@@ -1,0 +1,5 @@
+Francais fr
+English en
+Deutch de
+Espanol sp
+Exit ex

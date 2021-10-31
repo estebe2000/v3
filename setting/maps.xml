@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<maps>
+    <map data-id="story">
+        <nom>story</nom>
+        <key>guide</key>
+		<meteo></meteo>
+		<zoom>2</zoom>
+		<portal>
+		    <from_world>story</from_world>
+			<origin_point>enter_world</origin_point>
+			<target_world>world</target_world>
+			<teleport_point>player</teleport_point>
+		</portal>
+		<npc>
+				<nompnj>guide</nompnj>
+				<nb_points>2</nb_points>
+				<dial></dial>
+		</npc>
+	</map>
+
+	<map data-id="world">
+        <nom>world</nom>
+        <key></key>
+		<meteo>pluis</meteo>
+		<zoom>2</zoom>
+		<portal>
+		    <from_world>world</from_world>
+			<origin_point>enter_house</origin_point>
+			<target_world>house</target_world>
+			<teleport_point>spawn_house</teleport_point>
+		</portal>
+		<portal>
+		    <from_world>world</from_world>
+		  	<origin_point>enter_house1</origin_point>
+		  	<target_world>house1</target_world>
+		  	<teleport_point>spawn_house</teleport_point>
+		</portal>
+		<portal>
+		    <from_world>world</from_world>
+		  	<origin_point>enter_house2</origin_point>
+		  	<target_world>house2</target_world>
+		  	<teleport_point>spawn_house</teleport_point>
+		</portal>
+		<portal>
+		    <from_world>world</from_world>
+		  	<origin_point>enter_dungeon</origin_point>
+		  	<target_world>dungeon</target_world>
+		  	<teleport_point>spawn_dungeon</teleport_point>
+		</portal>
+		<npc>
+				<nompnj>paul</nompnj>
+				<nb_points>4</nb_points>
+				<dial>'Bonne aventure', 'Merci pour tout', 'A bientot'</dial>
+		</npc>
+		<npc>
+				<nompnj>robin</nompnj>
+				<nb_points>2</nb_points>
+				<dial>'Bonne aventura', 'Merki pour tout', 'A vientot'</dial>
+		</npc>
+	</map>
+	<map data-id="house">
+        <nom>house</nom>
+        <key></key>
+		<meteo>flou</meteo>
+		<zoom>2</zoom>
+		<portal>
+		    <from_world>house</from_world>
+			<origin_point>exit_house</origin_point>
+			<target_world>world</target_world>
+			<teleport_point>enter_house_exit</teleport_point>
+		</portal>
+
+	</map>
+	<map data-id="house1">
+        <nom>house1</nom>
+        <key></key>
+		<meteo>superflou</meteo>
+		<zoom>2</zoom>
+		<portal>
+		    <from_world>house1</from_world>
+			<origin_point>exit_house</origin_point>
+			<target_world>world</target_world>
+			<teleport_point>enter_house1_exit</teleport_point>
+		</portal>
+
+	</map>
+	<map data-id="house2">
+        <nom>house2</nom>
+        <key></key>
+		<meteo>0</meteo>
+		<zoom>2</zoom>
+		<portal>
+		    <from_world>house2</from_world>
+			<origin_point>exit_house</origin_point>
+			<target_world>world</target_world>
+			<teleport_point>enter_house2_exit</teleport_point>
+		</portal>
+		<portal>
+		    <from_world>house2</from_world>
+		  	<origin_point>enter_cave_house2</origin_point>
+		  	<target_world>cave_house2</target_world>
+		  	<teleport_point>spawn_cave_house2</teleport_point>
+		</portal>
+
+	</map>
+	<map data-id="cave_house2">
+        <nom>cave_house2</nom>
+        <key>ghost</key>
+		<meteo>neige</meteo>
+		<zoom>2</zoom>
+		<portal>
+		    <from_world>cave_house2</from_world>
+			<origin_point>exit_house2</origin_point>
+			<target_world>house2</target_world>
+			<teleport_point>enter_cave_house2_exit</teleport_point>
+		</portal>
+		<npc>
+				<nompnj>ghost</nompnj>
+				<nb_points>2</nb_points>
+				<dial>'booooooo'</dial>
+		</npc>
+	</map>
+	<map data-id="dungeon">
+        <nom>dungeon</nom>
+        <key>boss</key>
+		<meteo>0</meteo>
+		<zoom>2</zoom>
+		<portal>
+		    <from_world>dungeon</from_world>
+			<origin_point>exit_dungeon</origin_point>
+			<target_world>world</target_world>
+			<teleport_point>dungeon_exit_spawn</teleport_point>
+		</portal>
+		<npc>
+				<nompnj>boss</nompnj>
+				<nb_points>8</nb_points>
+				<dialog>'Tuer!!!!', 'Mon tresorrrrrr', 'A votre bon coeur'</dialog>
+		</npc>
+	</map>
+</maps>
