@@ -190,6 +190,6 @@
   <object id="13" name="guide_path1" x="293.916" y="84.534" width="16.3333" height="16"/>
   <object id="14" name="guide_path2" x="292.75" y="164.466" width="16.3333" height="16"/>
   <object id="15" name="enter_world" x="363.911" y="123.287" width="36.6789" height="48.4259"/>
-  <object id="28" name="clef" type="clef" x="82.0105" y="111.034" width="16.3333" height="16"/>
+  <object id="28" name="up" type="clef" x="82.0105" y="111.034" width="16.3333" height="16"/>
  </objectgroup>
 </map>

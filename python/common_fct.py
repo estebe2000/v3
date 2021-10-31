@@ -34,3 +34,8 @@ def newyh(current_screen,n):
 
 def newzoom(current_screen,n):
     return float(float(n) / screen_width * current_screen.get_width())
+
+def son_short(name):
+    pas = pygame.mixer.Sound(f'./sounds/{name}.mp3')
+    pygame.mixer.Sound.set_volume(pas, 0.5)
+    pas.play(0)

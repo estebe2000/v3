@@ -23,6 +23,7 @@ class Map:
     bulle: list[pygame.Rect]
     clef: list[pygame.Rect]
     zoom: float
+    have_key: bool
 
 
 class MapManager:
@@ -45,7 +46,6 @@ class MapManager:
 
         self.info_key = False
         self.logo = pygame.image.load("./medias/loupe.png")
-        self.icon_clef1 = pygame.image.load("./medias/key_1.png")
         self.logo2 = pygame.image.load("./medias/key_2.png")
 
 
@@ -60,6 +60,7 @@ class MapManager:
                     self.keyok = True
                     self.logo = pygame.image.load("./medias/loupe1.png")
             if sprite.feet.colliderect(self.player.rect) and type(sprite) is Leskey:
+                if not (self.recup_cle): son_short('woosh')
                 self.recup_cle = True
 
     def check_key_collection(self, dialog_box, info=[]):
@@ -89,6 +90,13 @@ class MapManager:
                     # lancer font sonore
                     ma_musique_de_fond(self.current_map)
 
+        if not(self.recup_cle):
+            self.logo2 = pygame.image.load("./medias/key_2.png")
+
+        else:
+            self.logo2 = pygame.image.load("./medias/key_1.png")
+
+
         # collision
         for sprite in self.get_group().sprites():
 
@@ -101,31 +109,33 @@ class MapManager:
             if sprite.feet.collidelist(self.get_walls()) > -1:
                 sprite.move_back()
 
-            if not self.get_clef() or sprite.feet.collidelist(self.get_clef()) > -1:
-                self.icon_clef1 = pygame.image.load("./medias/key_2.png")
-                self.logo2 = pygame.image.load("./medias/key_1.png")
-                #self.recup_cle = True
+
+
 
     def teleport_player(self, name):
 
-        self.icon_clef1 = pygame.image.load("./medias/key_1.png")
-        self.logo2 = pygame.image.load("./medias/key_2.png")
+        if self.map_have_key():
+            self.logo2 = pygame.image.load("./medias/key_2.png")
+            self.recup_cle = False
+        else:
+            self.logo2 = pygame.image.load("./medias/key_1.png")
+            self.recup_cle = True
+
         if self.get_key() == 'None':
             self.keyok = True
             self.logo = pygame.image.load("./medias/loupe1.png")
+
         else:
             self.key2continus = self.get_key()
             self.keyok = False
             self.logo = pygame.image.load("./medias/loupe.png")
 
-        self.recup_cle = False
-
         self.listes_cjefs = self.loc_clef()
-        print(self.listes_cjefs)
         for clefs in self.listes_cjefs:
             pass
             a = Leskey(x=clefs.x/self.get_zoom(), y=clefs.y/self.get_zoom())
-            a.change_animation("down")
+            print (clefs)
+            a.change_animation("up")
 
             self.get_group().add(a)
 
@@ -165,6 +175,7 @@ class MapManager:
             bulle = []
             # les clefs
             clef = []
+            find_key= False
 
             # Dessiner les différents calques
             group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=5)
@@ -179,6 +190,7 @@ class MapManager:
                     bulle.append(pygame.Rect(obj.x, obj.y, obj.width, obj.height))
                 if obj.type == "clef":
                     clef.append(pygame.Rect(obj.x, obj.y, 16, 32))
+                    find_key = True
 
             # ajout des portails
             for port in range(nbport):
@@ -204,7 +216,7 @@ class MapManager:
 
 
             # Creer un objet map
-            self.maps[name] = Map(name, walls, group, tmx_data, portals, npcs, key, meteo, feu, bulle, clef, zoom)
+            self.maps[name] = Map(name, walls, group, tmx_data, portals, npcs, key, meteo, feu, bulle, clef, zoom,find_key)
 
     def get_map(self):
         return self.maps[self.current_map]
@@ -217,6 +229,9 @@ class MapManager:
 
     def get_walls(self):
         return self.get_map().walls
+
+    def map_have_key(self):
+        return  self.get_map().have_key
 
     def get_feu(self):
         return self.get_map().feu
@@ -303,7 +318,7 @@ class MapManager:
             pass
             Particle_light(bulles.x, bulles.y, screen=self.screen, rgb=(0, 0, 0), rad=2, vit=5, haut=1).show_particle()
         for clefs in self.loc_clef() :
-            #self.screen.blit(self.icon_clef1, (clefs.x, clefs.y))
+
             pass
 
         if self.get_meteo() == "pluis":
