@@ -83,7 +83,7 @@ class NPC(Entity):
         self.nb_points = nb_points
         self.dialog = dialog
         if not dialog:
-            with open(f"./textes/{name}.csv", newline='') as f:
+            with open(f"../textes/{name}.csv", newline='') as f:
                 reader = csv.reader(f, delimiter=';', quoting=csv.QUOTE_NONE)
                 for row in reader:
                     if (row[0] == lang):

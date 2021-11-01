@@ -7,17 +7,17 @@ class DialogBox:
     Y_POSITION = 470
 
     def __init__(self):
-        self.box = pygame.image.load("./dialogs/dialog_box.png")
+        self.box = pygame.image.load("../dialogs/dialog_box.png")
         self.box = pygame.transform.scale(self.box, (700, 100))
         self.texts = []
         self.text_index = 0
         self.letter_index = 0
-        self.font = pygame.font.Font("./dialogs/dialog_font.ttf", 18)
+        self.font = pygame.font.Font("../dialogs/dialog_font.ttf", 18)
         self.reading = False
         self.dialog_fin = False
 
     def son_text(self):
-        pas = pygame.mixer.Sound(f'./sounds/texte.wav')
+        pas = pygame.mixer.Sound(f'../sounds/texte.wav')
         pygame.mixer.Sound.set_volume(pas, 0.5)
         pas.play(0)
 

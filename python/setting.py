@@ -4,7 +4,7 @@ screen_width = 800
 screen_height = 576
 
 # fichier menu
-fmenu = "./textes/menu.txt"
+fmenu = "../textes/menu.txt"
 
 # liste pour le menu
 items = []

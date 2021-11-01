@@ -45,8 +45,8 @@ class MapManager:
         self.recup_cle = False
 
         self.info_key = False
-        self.logo = pygame.image.load("./medias/loupe.png")
-        self.logo2 = pygame.image.load("./medias/key_2.png")
+        self.logo = pygame.image.load("../medias/loupe.png")
+        self.logo2 = pygame.image.load("../medias/key_2.png")
 
 
     def check_npc_collision(self, dialog_box):
@@ -58,7 +58,7 @@ class MapManager:
 
                 if sprite.is_name() == self.key2continus and fin:
                     self.keyok = True
-                    self.logo = pygame.image.load("./medias/loupe1.png")
+                    self.logo = pygame.image.load("../medias/loupe1.png")
             if sprite.feet.colliderect(self.player.rect) and type(sprite) is Leskey:
                 if not (self.recup_cle): son_short('woosh')
                 self.recup_cle = True
@@ -91,10 +91,10 @@ class MapManager:
                     ma_musique_de_fond(self.current_map)
 
         if not(self.recup_cle):
-            self.logo2 = pygame.image.load("./medias/key_2.png")
+            self.logo2 = pygame.image.load("../medias/key_2.png")
 
         else:
-            self.logo2 = pygame.image.load("./medias/key_1.png")
+            self.logo2 = pygame.image.load("../medias/key_1.png")
 
 
         # collision
@@ -115,20 +115,20 @@ class MapManager:
     def teleport_player(self, name):
 
         if self.map_have_key():
-            self.logo2 = pygame.image.load("./medias/key_2.png")
+            self.logo2 = pygame.image.load("../medias/key_2.png")
             self.recup_cle = False
         else:
-            self.logo2 = pygame.image.load("./medias/key_1.png")
+            self.logo2 = pygame.image.load("../medias/key_1.png")
             self.recup_cle = True
 
         if self.get_key() == 'None':
             self.keyok = True
-            self.logo = pygame.image.load("./medias/loupe1.png")
+            self.logo = pygame.image.load("../medias/loupe1.png")
 
         else:
             self.key2continus = self.get_key()
             self.keyok = False
-            self.logo = pygame.image.load("./medias/loupe.png")
+            self.logo = pygame.image.load("../medias/loupe.png")
 
         self.listes_cjefs = self.loc_clef()
         for clefs in self.listes_cjefs:
@@ -147,7 +147,7 @@ class MapManager:
 
 
     def register_maps(self):
-        doc = ET.parse('./setting/maps.xml')
+        doc = ET.parse('../setting/maps.xml')
 
         # pour toutes les maps dans le xml
         for AAA in doc.findall('map'):
@@ -162,7 +162,7 @@ class MapManager:
             # print(f"La map {name} a {nbport} portails et {npnpc} PNJ")
 
             # Charger la carte
-            tmx_data = pytmx.util_pygame.load_pygame(f"./maps/tmx/{name}.tmx")
+            tmx_data = pytmx.util_pygame.load_pygame(f"../maps/tmx/{name}.tmx")
             map_data = pyscroll.data.TiledMapData(tmx_data)
             map_layer = pyscroll.orthographic.BufferedRenderer(map_data, self.screen.get_size())
             map_layer.zoom = newzoom(self.screen,AAA[3].text)
@@ -296,7 +296,7 @@ class MapManager:
         self.get_group().draw(self.screen)
         self.screen.set_colorkey((0, 0, 0))
         blur(self.screen, (0, 0), (800, 45), 1)
-        myfont = pygame.font.Font("./dialogs/dialog_font.ttf", 18)
+        myfont = pygame.font.Font("../dialogs/dialog_font.ttf", 18)
         now2 = datetime.datetime.now()
         dif = str(now2 - now)
         nowstr = now2.strftime("%Y-%m-%d %H:%M:%S")

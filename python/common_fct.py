@@ -21,7 +21,7 @@ def ma_musique_de_fond(choix_musique):
     pygame.mixer.init()
     PATH = './sounds/' + choix_musique + '.mp3'
     if not (os.path.isfile(PATH) and os.access(PATH, os.R_OK)):
-        PATH = './sounds/default.mp3'
+        PATH = '../sounds/default.mp3'
     pygame.mixer.music.load(PATH)
     pygame.mixer.music.set_volume(0.2)
     pygame.mixer.music.play(-1)  # If the loops is -1 then the music will repeat indefinitely.
@@ -36,6 +36,6 @@ def newzoom(current_screen,n):
     return float(float(n) / screen_width * current_screen.get_width())
 
 def son_short(name):
-    pas = pygame.mixer.Sound(f'./sounds/{name}.mp3')
+    pas = pygame.mixer.Sound(f'../sounds/{name}.mp3')
     pygame.mixer.Sound.set_volume(pas, 0.5)
     pas.play(0)

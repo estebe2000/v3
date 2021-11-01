@@ -5,7 +5,7 @@ class AnimateSprite(pygame.sprite.Sprite):
 
     def __init__(self, name):
         super().__init__()
-        self.sprite_sheet = pygame.image.load(f"./sprites/{name}.png")
+        self.sprite_sheet = pygame.image.load(f"../sprites/{name}.png")
         self.animation_index = 0
         self.clock = 0
         self.images = {
@@ -28,9 +28,9 @@ class AnimateSprite(pygame.sprite.Sprite):
                 self.animation_index = 0
                 PATH = (f'./sounds/marche_{name}.wav')
                 if not (os.path.isfile(PATH) and os.access(PATH, os.R_OK)):
-                    pas = pygame.mixer.Sound(f'./sounds/marche_player.wav')
+                    pas = pygame.mixer.Sound(f'../sounds/marche_player.wav')
                 else:
-                    pas = pygame.mixer.Sound(f'./sounds/marche_{name}.wav')
+                    pas = pygame.mixer.Sound(f'../sounds/marche_{name}.wav')
                 if self.name == 'player':
                     pygame.mixer.Sound.set_volume(pas, 0.8)
                 else:

@@ -42,8 +42,8 @@ class Game:
         self.map_manager.update()
 
     def menu(self):
-        image_fond = pygame.image.load(f"./medias/{image_fd}")
-        logo_fond = pygame.image.load(f"./medias/{logo_fd}")
+        image_fond = pygame.image.load(f"../medias/{image_fd}")
+        logo_fond = pygame.image.load(f"../medias/{logo_fd}")
         ma_musique_de_fond(mmenu)
 
         with open(fmenu) as f:
