@@ -44,16 +44,17 @@ class MapManager:
         self.keyok = False
         self.recup_cle = False
 
+        self.les_clefs = []
+
         self.info_key = False
         self.logo = pygame.image.load("../medias/loupe.png")
         self.logo2 = pygame.image.load("../medias/key_2.png")
 
-
-    def check_npc_collision(self, dialog_box):
+    def check_npc_collision(self, dialog_box,move):
 
         for sprite in self.get_group().sprites():
             if sprite.feet.colliderect(self.player.rect) and type(sprite) is NPC:
-                fin = dialog_box.execute(sprite.dialog)
+                fin = dialog_box.execute(sprite.dialog,move)
                 sprite.talking()
 
                 if sprite.is_name() == self.key2continus and fin:
@@ -131,13 +132,6 @@ class MapManager:
             self.logo = pygame.image.load("../medias/loupe.png")
 
         self.listes_cjefs = self.loc_clef()
-        for clefs in self.listes_cjefs:
-            pass
-            a = Leskey(x=clefs.x/self.get_zoom(), y=clefs.y/self.get_zoom())
-            print (clefs)
-            a.change_animation("up")
-
-            self.get_group().add(a)
 
         point = self.get_object(name)
 
@@ -267,7 +261,6 @@ class MapManager:
         for obj in self.get_map().tmx_data.objects:
             if obj.type == "clef":
                 clefs.append(pygame.Rect(obj.x * self.get_zoom(), obj.y * self.get_zoom(), obj.width, obj.height))
-
         return clefs
 
     def get_language(self):
@@ -317,8 +310,11 @@ class MapManager:
         for bulles in self.loc_bulle():
             pass
             Particle_light(bulles.x, bulles.y, screen=self.screen, rgb=(0, 0, 0), rad=2, vit=5, haut=1).show_particle()
-        for clefs in self.loc_clef() :
 
+        for clefs in self.loc_clef() :
+            a = Leskey(x=clefs.x / self.get_zoom(), y=clefs.y / self.get_zoom())
+            a.change_animation("up")
+            self.get_group().add(a)
             pass
 
         if self.get_meteo() == "pluis":

@@ -21,16 +21,16 @@ class DialogBox:
         pygame.mixer.Sound.set_volume(pas, 0.5)
         pas.play(0)
 
-    def execute(self, dialog=[]):
-        if self.reading:
-            self.next_text()
-
-
+    def execute(self, dialog=[],move=False):
+        if move : self.close_dialog()
         else:
-            self.reading = True
-            self.text_index = 0
-            self.texts = dialog
-            self.son_text()
+            if self.reading:
+                self.next_text()
+            else:
+                self.reading = True
+                self.text_index = 0
+                self.texts = dialog
+                self.son_text()
         return self.dialog_fin
 
     def render(self, screen):
@@ -50,13 +50,14 @@ class DialogBox:
         self.letter_index = 0
 
         if self.text_index >= len (self.texts):
-            #close dialog box
-            self.reading = False
+            self.close_dialog()
             self.dialog_fin = True
-
         else :
             self.son_text()
 
+    def close_dialog(self):
+        # close dialog box
+        self.reading = False
 
 
 

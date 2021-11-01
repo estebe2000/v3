@@ -137,8 +137,10 @@ class Game:
                     self.running = False
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
-                        self.map_manager.check_npc_collision(self.dialog_box)
+                        self.map_manager.check_npc_collision(self.dialog_box,move=False)
                         self.map_manager.check_key_collection(self.dialog_box,["trop tot"])
+                    else:
+                        self.map_manager.check_npc_collision(self.dialog_box, move=True)
             clock.tick(60)
 
         pygame.quit()
